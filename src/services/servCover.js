@@ -121,7 +121,7 @@ export const saveCoverInfo = async (data) => {
             previousLines: JSON.stringify(item['previousLines']),
          };
       });
-      return genericFetch({
+      return await genericFetch({
          url: '/credit/Cover/saveCoverInfo',
          method: 'post',
          data: JSON.stringify({ requests: newData }),

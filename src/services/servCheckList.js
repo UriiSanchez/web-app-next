@@ -36,7 +36,7 @@ export const getDocumentation = async (info, user) => {
          const cusDoc = {
             ...doc,
             folio: isFoundDocument?.folio ?? null,
-            mandatory: isFoundDocument.mandatory ?? false,
+            mandatory: isFoundDocument?.mandatory ?? false,
          };
          const documentType = doc._id;
 

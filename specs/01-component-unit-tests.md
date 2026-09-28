@@ -1,8 +1,8 @@
 # SPEC 01 — Pruebas unitarias de componentes
 
-> **Status:** Aprobado
-> **Depends on:** Ninguna
-> **Date:** 2026-09-28
+> **Status:** Aprobado  
+> **Depends on:** Ninguna  
+> **Date:** 2026-09-28  
 > **Objective:** Crear pruebas unitarias con Jest y React Testing Library para todos los componentes de `src/components`, excepto `Skeleton`, con una suite por archivo y una carpeta por paso, excluyendo `Skeleton`, `SVG` y `Layout`.
 
 ## Por qué existe esta spec
