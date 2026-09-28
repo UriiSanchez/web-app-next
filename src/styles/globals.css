@@ -1,0 +1,917 @@
+/* Initial e imports css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+   html,
+   pre,
+   button,
+   div {
+      font-family: 'Poppins', sans-serif;
+      font-weight: normal;
+   }
+}
+
+@layer components {
+   .btn-cancel-swal {
+      padding: 0.2em 1.1em !important;
+      border-radius: 24px;
+      border: 2px solid #000 !important;
+      background-color: #f4f4f4;
+      box-shadow: 0px 8px 13px 0px rgba(183, 184, 183, 0.15);
+      @apply w-32 mr-8 text-black bg-white;
+   }
+
+   .btn-accept-swal {
+      border-radius: 24px;
+      padding: 0.3em 1.1em !important;
+      box-shadow: 0px 8px 13px 0px rgba(183, 184, 183, 0.15);
+      background-color: #1c1d1c;
+      @apply ml-8 w-36;
+   }
+}
+
+/* Configuracion de fuente */
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Thin.ttf) format('truetype');
+   font-weight: 100;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-ThinItalic.ttf) format('truetype');
+   font-weight: 100;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-ExtraLight.ttf) format('truetype');
+   font-weight: 200;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-ExtraLightItalic.ttf) format('truetype');
+   font-weight: 200;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Light.ttf) format('truetype');
+   font-weight: 300;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-LightItalic.ttf) format('truetype');
+   font-weight: 300;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Regular.ttf) format('truetype');
+   font-weight: 400;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Italic.ttf) format('truetype');
+   font-weight: 400;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Medium.ttf) format('truetype');
+   font-weight: 500;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-MediumItalic.ttf) format('truetype');
+   font-weight: 500;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-SemiBold.ttf) format('truetype');
+   font-weight: 600;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-SemiBoldItalic.ttf) format('truetype');
+   font-weight: 600;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Bold.ttf) format('truetype');
+   font-weight: 700;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-BoldItalic.ttf) format('truetype');
+   font-weight: 700;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-ExtraBold.ttf) format('truetype');
+   font-weight: 800;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-ExtraBoldItalic.ttf) format('truetype');
+   font-weight: 800;
+   font-style: italic;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-Black.ttf) format('truetype');
+   font-weight: 900;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Poppins';
+   src: url(../../public/fonts/Poppins-BlackItalic.ttf) format('truetype');
+   font-weight: 900;
+   font-style: italic;
+}
+
+*,
+:after,
+:before {
+   box-sizing: border-box;
+   border: 0 solid #e5e7eb;
+}
+
+html {
+   position: relative;
+   overflow-x: hidden;
+}
+
+#__next {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+}
+
+/* Contenedores propios*/
+.container-request {
+   max-height: 100svh;
+}
+
+.bg-process {
+   background-color: #f5b5b1 !important;
+}
+
+.bg-finish {
+   background-color: #a5d3c1 !important;
+}
+
+.btn-secondary {
+   @apply w-36 h-7 py-1.5 px-2 border border-black rounded-2xl text-xs 2xl:text-sm 2xl:w-40 flex items-center justify-center gap-1 select-none bg-white;
+}
+
+.btn-modal-primary {
+   display: flex !important;
+   height: 27px;
+   padding: 4px 12px;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   font-size: 14px;
+   border-radius: 24px;
+   background: #1c1d1c;
+}
+
+.btn-modal-primary:hover {
+   @apply bg-black-light;
+}
+
+.btn-modal-secondary {
+   display: flex !important;
+   height: 27px;
+   padding: 4px 12px;
+   justify-content: center;
+   align-items: center;
+   gap: 10px;
+   font-size: 14px;
+   border-radius: 24px;
+   background: white;
+   color: #1c1d1c;
+   border: 2px solid #000;
+}
+
+/*Custom Tooltips*/
+.tooltip-content {
+   visibility: hidden;
+   opacity: 0;
+   position: absolute;
+   padding: 8px 12px;
+   border-radius: 8px 8px 8px 0;
+   color: white;
+   z-index: 100;
+   transition: opacity 0.5s ease-in-out;
+   pointer-events: none;
+   width: max-content;
+}
+
+.tooltip-container:hover .tooltip-content {
+   visibility: visible;
+   opacity: 1;
+}
+
+.tooltip-container {
+   position: relative;
+   display: inline-block;
+}
+
+.tooltip-content.tooltip-top {
+   bottom: 100%;
+   left: 50%;
+   transform: translateX(-50%);
+   margin-bottom: 5px;
+}
+
+.tooltip-content.tooltip-right {
+   bottom: 58%;
+   transform: translateX(7%);
+}
+
+/* Recommended icon sizes material symbols */
+span.icon-size-20 {
+   font-size: 20px;
+   font-variation-settings: 'OPSZ' 20;
+}
+
+span.icon-size-24 {
+   font-size: 24px;
+   font-variation-settings: 'OPSZ' 24;
+}
+
+span.icon-size-32 {
+   font-size: 32px;
+   font-variation-settings: 'OPSZ' 32;
+}
+
+span.icon-size-40 {
+   font-size: 40px;
+   font-variation-settings: 'OPSZ' 40;
+}
+
+span.icon-size-48 {
+   font-size: 48px;
+   font-variation-settings: 'OPSZ' 48;
+}
+
+span.filled {
+   font-variation-settings: 'FILL' 1;
+}
+
+span.thin {
+   font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0;
+}
+
+.input-required:placeholder-shown {
+   @apply border-red-500 hover:border-red-500 hover:ring-1 hover:ring-red-500 focus:ring-red-500 focus:text-red-500 focus:border-red-500;
+}
+
+/* Custom styles */
+.container-overflow {
+   height: 100%;
+   overflow: auto;
+   width: 100%;
+}
+
+.container-overflow::-webkit-scrollbar,
+.menu-cover::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+html::-webkit-scrollbar,
+select::-webkit-scrollbar {
+   -webkit-appearance: none;
+   appearance: none;
+}
+
+.container-overflow::-webkit-scrollbar:vertical,
+.menu-cover::-webkit-scrollbar:vertical,
+textarea::-webkit-scrollbar:vertical,
+html::-webkit-scrollbar:vertical,
+select::-webkit-scrollbar:vertical {
+   width: 10px;
+}
+
+.container-overflow::-webkit-scrollbar-button:increment,
+.menu-cover::-webkit-scrollbar-button:increment,
+.container-overflow::-webkit-scrollbar-button,
+.menu-cover::-webkit-scrollbar-button,
+textarea::-webkit-scrollbar-button:increment,
+textarea::-webkit-scrollbar-button,
+html::-webkit-scrollbar-button:increment,
+html::-webkit-scrollbar-button,
+select::-webkit-scrollbar-button:increment,
+select::-webkit-scrollbar-button {
+   display: none;
+}
+
+.container-overflow::-webkit-scrollbar:horizontal,
+.menu-cover::-webkit-scrollbar:horizontal,
+textarea::-webkit-scrollbar:horizontal,
+html::-webkit-scrollbar:horizontal,
+select::-webkit-scrollbar:horizontal {
+   height: 10px;
+}
+
+.container-overflow::-webkit-scrollbar-thumb,
+.menu-cover::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb,
+select::-webkit-scrollbar-thumb {
+   background-color: #b9b9b9;
+   border-radius: 20px;
+   border: 2px solid #f1f2f3;
+}
+
+.container-overflow::-webkit-scrollbar-track,
+.menu-cover::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track,
+select::-webkit-scrollbar-track {
+   border-radius: 10px;
+}
+
+/* Custom style for modal scrollbar */
+
+.custom-scrollbar {
+   scrollbar-width: thin;
+}
+
+/* Custom styles for textarea and input text form */
+
+.input-form {
+   border-color: #9ca3af;
+   border-width: 1px;
+   border-radius: 4px;
+   outline: 2px solid transparent;
+   outline-offset: 2px;
+   resize: none;
+}
+
+.input-form:hover {
+   @apply border-[#1e40af] focus:outline-none ring-1 ring-[#1e40af] hover:border-[#1e40af] hover:ring-[#1e40af];
+}
+
+.input-form:focus {
+   outline: 2px solid transparent;
+   outline-offset: 2px;
+   --tw-text-opacity: 1;
+   color: #1e40af;
+}
+
+.input-form::placeholder {
+   --tw-placeholder-opacity: 1;
+   color: #94a3b8;
+}
+
+/* Custom styles for textarea and input text form mandatory */
+
+.input-form.mandatory {
+   @apply border-[#f6b03e] focus:outline-none ring-1 ring-[#f6b03e] hover:border-[#f6b03e] hover:ring-[#f6b03e];
+}
+
+/* Custom styles for textarea and input text form disabled */
+
+.input-form.disabled {
+   border-color: #9ca3af;
+   border-width: 1px;
+   border-radius: 4px;
+   outline: none;
+   outline-offset: 2px;
+   resize: none;
+   color: #000 !important;
+}
+
+.input-form.disabled:hover {
+   box-shadow: none;
+   border-color: #9ca3af;
+}
+
+.input-form.disabled:focus {
+   outline: none;
+   outline-offset: none;
+}
+
+/* Custom styles for textarea and input text form wrong */
+
+.input-form.wrong {
+   @apply border-red-500 focus:outline-none focus:text-red-500 hover:border-red-500 ring-1 ring-red-500;
+}
+
+.input-required:placeholder-shown {
+   @apply border-red-500 hover:border-red-500 hover:ring-1 hover:ring-red-500 focus:ring-red-500 focus:text-red-500 focus:border-red-500;
+}
+
+/* Custom styles for radio and check buttons */
+.option-input {
+   -moz-appearance: none;
+   -ms-appearance: none;
+   -o-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+   background: #cbd1d8;
+   border: none;
+   border-radius: 2%;
+   bottom: 0;
+   color: #fff !important;
+   cursor: pointer;
+   display: inline-block;
+   height: 20px;
+   left: 0;
+   margin-right: 0.5rem;
+   outline: none;
+   position: relative;
+   right: 0;
+   top: 4px;
+   transition: all 0.15s ease-out 0s;
+   width: 20px;
+   z-index: 1;
+}
+
+.option-input::after {
+   border-radius: 2%;
+}
+
+.option-input:hover {
+   background: #9faab7;
+}
+
+.option-input:checked {
+   background: #064bb5;
+}
+
+.option-input:checked::before {
+   align-items: center;
+   content: '\e876';
+   display: flex;
+   font-family: 'Material Symbols Outlined';
+   font-size: 20px;
+   font-weight: bold;
+   height: 20px;
+   justify-content: center;
+   position: absolute;
+   width: 20px;
+}
+
+.option-input:checked::after {
+   background: #064bb5;
+   content: '';
+   display: block;
+   position: relative;
+   z-index: 100;
+}
+
+/*New styles for checkbox*/
+.check-input {
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #FFFFFF;
+    border: 1.5px solid #1C1D1C;
+    border-radius: 2px;
+    bottom: 0;
+    color: #fff !important;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    left: 0;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    right: 0;
+    top: 4px;
+    transition: all 0.15s ease-out 0s;
+    width: 20px;
+    z-index: 1;
+}
+
+.check-input::after {
+    border-radius: 2px;
+}
+
+.check-input:hover {
+    background: #EEEEEE;
+}
+
+.check-input:checked {
+    background: #1C1D1C;
+}
+
+.check-input:checked::before {
+    align-items: center;
+    content: '\e876';
+    display: flex;
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    font-weight: bold;
+    height: 20px;
+    justify-content: center;
+    position: absolute;
+    width: 20px;
+    top: -1px;
+    left: -0.5px;
+}
+
+.check-input:checked::after {
+    background: #1C1D1C;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+
+/*New styles for option input mandatory*/
+
+.option-input.mandatory {
+   background: #fff;
+   border: #f6b03e;
+   border-radius: 50%;
+   bottom: auto;
+   color: #f6b03e !important;
+   outline: auto;
+}
+
+.option-input.mandatory:hover {
+   background: #9faab7;
+}
+
+/*New styles for checkbox*/
+.check-input {
+   -moz-appearance: none;
+   -ms-appearance: none;
+   -o-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+   background: #ffffff;
+   border: 1.5px solid #1c1d1c;
+   border-radius: 2px;
+   bottom: 0;
+   color: #fff !important;
+   cursor: pointer;
+   display: inline-block;
+   height: 20px;
+   left: 0;
+   margin-right: 0.5rem;
+   outline: none;
+   position: relative;
+   right: 0;
+   top: 4px;
+   transition: all 0.15s ease-out 0s;
+   width: 20px;
+   z-index: 1;
+}
+
+.check-input::after {
+   border-radius: 2px;
+}
+
+.check-input:hover {
+   background: #eeeeee;
+}
+
+.check-input:checked {
+   background: #1c1d1c;
+}
+
+.check-input:checked::before {
+   align-items: center;
+   content: '\e876';
+   display: flex;
+   font-family: 'Material Symbols Outlined';
+   font-size: 20px;
+   font-weight: bold;
+   height: 20px;
+   justify-content: center;
+   position: absolute;
+   width: 20px;
+   top: -1px;
+   left: -0.5px;
+}
+
+.check-input:checked::after {
+   background: #1c1d1c;
+   content: '';
+   display: block;
+   position: relative;
+   z-index: 100;
+}
+
+/*Styles for new design of table*/
+.new-table {
+   color: #383939;
+   border-collapse: collapse;
+   overflow: hidden;
+   border-radius: 4px 4px 0 0;
+}
+
+.new-table > thead {
+   background-color: #f4f4f4;
+}
+
+.option-input.radio {
+   border-radius: 50%;
+}
+
+.option-input.radio::after {
+   border-radius: 50%;
+}
+
+/*Custom style para radio en forma de botón*/
+.button-input {
+   -moz-appearance: none;
+   -ms-appearance: none;
+   -o-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+   background: #cbd1d8;
+   border: none;
+   border-radius: 2%;
+   bottom: 0;
+   color: #fff !important;
+   cursor: pointer;
+   display: inline-block;
+   height: 20px;
+   left: 0;
+   margin-right: 0.5rem;
+   outline: none;
+   position: relative;
+   right: 0;
+   top: 4px;
+   transition: all 0.15s ease-out 0s;
+   width: 20px;
+   z-index: 1;
+}
+
+/* Styles para los botones e inputs deshabilitados */
+.option-input:disabled {
+   background: rgba(212, 211, 211, 0.5);
+   color: #434343 !important;
+   pointer-events: none;
+}
+
+button:disabled.clean,
+input:disabled.clean,
+select:disabled.clean {
+   background: none;
+   color: #c8c8c8;
+   pointer-events: none;
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+   background-color: #bebebe33;
+   color: rgb(0, 0, 0, 0.8);
+   pointer-events: none;
+}
+
+button:disabled {
+   background-color: rgb(200, 200, 200, 1);
+   color: rgb(0, 0, 0, 0.8);
+   pointer-events: none;
+}
+
+@keyframes click-wave {
+   0% {
+      height: 40px;
+      width: 40px;
+      opacity: 0.35;
+      position: relative;
+   }
+
+   100% {
+      height: 200px;
+      width: 200px;
+      margin-left: -80px;
+      margin-top: -80px;
+      opacity: 0;
+   }
+}
+
+/* Create class for modify input type number*/
+.remove-arrow::-webkit-inner-spin-button,
+.remove-arrow::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   appearance: none;
+   margin: 0;
+}
+
+.remove-arrow {
+   -moz-appearance: textfield;
+   appearance: textfield;
+}
+
+/* Modify styles of swal2 */
+.swal2-html-container {
+   overflow: hidden;
+}
+
+.swal2-confirm {
+   box-shadow: none !important;
+   outline: none !important;
+}
+
+.swal2-actions {
+   margin: 0 !important;
+}
+
+/* Custom styles opacity */
+.opacity-25 {
+   opacity: 0.25;
+}
+
+.opacity-75 {
+   opacity: 0.75;
+}
+
+/* Animations css */
+.fadeIn {
+   -webkit-animation-duration: 0.5s;
+   animation-duration: 0.5s;
+   -webkit-animation-fill-mode: both;
+   animation-fill-mode: both;
+   -webkit-animation-name: fadeIn;
+   animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+   0% {
+      opacity: 0;
+   }
+
+   100% {
+      opacity: 1;
+   }
+}
+
+@-webkit-keyframes fadeIn {
+   0% {
+      opacity: 0;
+   }
+
+   100% {
+      opacity: 1;
+   }
+}
+
+.box,
+.circle {
+   animation: skeleton 1s linear infinite;
+   background-size: 400%;
+   background-image: linear-gradient(
+      to right,
+      #f2f2f2 0%,
+      #f2f2f2 30%,
+      #d9d9d9 45%,
+      #d9d9d9 50%,
+      #f2f2f2 60%,
+      #f2f2f2 100%
+   );
+}
+
+@keyframes skeleton {
+   0% {
+      background-position: 100%;
+   }
+
+   100% {
+      background-position: 0%;
+   }
+}
+
+/* Styles for DropdownComponents */
+.dropdown {
+   position: relative;
+}
+
+.dropdown .menu-drop {
+   position: absolute;
+   translate: 0px -20px;
+}
+
+.dropdown .menu-cover {
+   position: fixed;
+   translate: -20px 0px;
+   height: calc(100vh);
+}
+
+.dropdown .menu-drop,
+.dropdown .menu-cover {
+   opacity: 0;
+   overflow: hidden;
+   transition: 0.4s;
+   visibility: hidden;
+   z-index: 10;
+}
+
+.dropdown.open .menu-drop,
+.dropdown.open .menu-cover {
+   opacity: 1;
+   translate: 5%;
+   visibility: visible;
+}
+
+/* Custom styles by modal */
+.main-modal {
+   background: rgb(0 0 0 / 37%);
+   height: 100vh;
+   padding-top: 5rem;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 100;
+}
+
+.modal-container {
+   background-color: white;
+}
+
+.modal-container.fixed-position-modal {
+   margin-top: 5%;
+}
+
+.pdf-modal {
+   background-color: #ffff;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 100;
+   padding: 0;
+}
+
+@media screen and (min-width: 1281px) {
+   .modal-container.fixed-position-modal {
+      margin-top: 12%;
+   }
+
+   .container-request {
+      height: calc(100vh - 16rem) !important;
+      max-height: calc(100vh - 16em) !important;
+   }
+}
+
+/* sweetAlert customs styles */
+.close-snackbar-confirm {
+   background-color: #ffffff !important;
+   color: #064bb5 !important;
+   border-radius: 50% !important;
+}
+
+.close-snackbar-success {
+   background-color: #ffffff !important;
+   color: #27996c !important;
+   border-radius: 50% !important;
+}
+
+.close-snackbar-error {
+   background-color: #ffffff !important;
+   color: #ff6265 !important;
+   border-radius: 50% !important;
+}
+
+.swal2-timer-progress-bar {
+   background: rgb(177 177 177 / 50%) !important;
+}
+
+/* Ajustes a Date Range Component*/
+.rdrCalendarWrapper {
+    /*width: 80%;*/
+}
+
+.rdrMonthName {
+    text-transform: capitalize !important;
+    color: #222222 !important;
+}

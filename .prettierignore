@@ -1,0 +1,14 @@
+.eslintrc.json
+.gitignore
+.next
+.prettierrc
+.prettierignore
+.prettierrc
+next.config.js
+pnpm-lock.yaml
+.migration
+.pnpm-store
+package.json
+postcss.config.js
+tailwind.config.js
+

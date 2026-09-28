@@ -1,0 +1,16 @@
+services:
+   easycredit-web:
+      container_name: gfb-easycredit-web
+      image: gfb-easycredit-web:latest
+      restart: on-failure
+      build:
+         context: .
+         dockerfile: Dockerfile
+      ports:
+         - "3001:3001"
+      networks:
+         - easycredit
+
+networks:
+   easycredit:
+      external: true

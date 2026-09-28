@@ -1,0 +1,14 @@
+# Isolated smoke test: no API, monitoring service or external Docker network.
+services:
+   easycredit-web:
+      image: gfb-easycredit-web:pnpm-local
+      build:
+         context: .
+         args:
+            ARG_ACTIVE_ISILOANS: 'false'
+      ports:
+         - '127.0.0.1:3001:3001'
+      environment:
+         NEW_RELIC_ENABLED: 'false'
+         NEXTAUTH_URL: http://localhost:3001
+         NEXTAUTH_SECRET: local-smoke-test-only-not-for-deployment

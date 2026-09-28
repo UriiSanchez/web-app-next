@@ -1,0 +1,115 @@
+.container-loader {
+   align-items: center;
+   background: rgb(0 0 0 / 50%);
+   color: #000;
+   display: grid;
+   height: 100vh;
+   justify-content: center;
+   left: 0;
+   place-content: center;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 1000;
+}
+
+.cargando {
+   color: #222222;
+   letter-spacing: 0.08em;
+   margin-top: 1em;
+   position: relative;
+}
+
+.rueda {
+   animation: giro 1s linear infinite;
+   -webkit-animation: giro 1s linear infinite;
+   border: 10px solid #eec945;
+   border-radius: 50%;
+   border-left-color: transparent;
+   width: 70px;
+   height: 70px;
+}
+
+@keyframes giro {
+   0% {
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+   }
+}
+
+.wrapper {
+   margin-top: 1%;
+   height: 70px;
+   overflow: hidden;
+   position: relative;
+   width: 70px;
+}
+
+.leftHalf,
+.rightHalf,
+.spinner {
+   top: 0;
+   position: absolute;
+   width: 50%;
+   height: 100%;
+}
+
+.leftHalf {
+   left: 0;
+   background: #fff;
+   z-index: 3;
+   opacity: 1;
+   animation: showHide 1.5s infinite steps(1, end);
+   -webkit-animation: showHide 1.5s infinite steps(1, end);
+   border-radius: 100% 0 0 100%/ 50% 0 0 50%;
+}
+
+.rightHalf {
+   right: 0;
+   background: #eec945;
+   z-index: 1;
+   opacity: 0;
+   animation: showHide 1.5s infinite steps(1, end) reverse;
+   -webkit-animation: showHide 1.5s infinite steps(1, end) reverse;
+   border-radius: 0 100% 100% 0/ 0 50% 50% 0;
+}
+
+.spinner {
+   animation: spin 1.5s linear infinite;
+   -webkit-animation: spin 1.5s linear infinite;
+   background: #eec945;
+   border-radius: 100% 0 0 100%/ 50% 0 0 50%;
+   left: 0;
+   overflow: hidden;
+   transform-origin: center right;
+   -webkit-transform-origin: center right;
+   z-index: 2;
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+   }
+}
+
+@keyframes showHide {
+   0% {
+      opacity: 1;
+   }
+
+   50%,
+   100% {
+      opacity: 0;
+   }
+}

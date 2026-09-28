@@ -1,0 +1,15 @@
+.btn-item {
+   align-items: center;
+   color: #fff;
+   cursor: pointer;
+   display: flex;
+   flex: 1;
+   padding: 0 6px;
+   margin: 4px 0;
+   user-select: none;
+}
+
+.btn-item:hover,
+.btn-item + button:hover {
+   background-color: rgba(131, 131, 131, 0.523);
+}

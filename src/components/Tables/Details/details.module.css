@@ -1,0 +1,25 @@
+.tracking-details {
+   display: grid;
+   grid-template-rows: auto auto auto 1fr auto;
+   max-height: 100%;
+}
+
+.tracking-timeline {
+   position: relative;
+   @apply grid grid-cols-6 items-center;
+}
+
+.tracking-timeline::after {
+   content: '';
+   position: absolute;
+   top: 80%;
+   width: 2px;
+   height: 100%;
+   background-color: #b7b8b7;
+   z-index: 0;
+   @apply left-[3.3%] 2xl:left-[2.9%];
+}
+
+.tracking-timeline:last-child::after {
+   content: none;
+}

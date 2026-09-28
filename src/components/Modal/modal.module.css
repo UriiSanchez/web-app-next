@@ -1,0 +1,23 @@
+.main-modal {
+   background: rgb(0 0 0 / 37%);
+   height: 100vh;
+   padding-top: 5rem;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 100;
+}
+
+.modal-container {
+   background-color: white;
+}
+
+.pdf-modal {
+   background-color: #ffff;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   z-index: 120;
+   padding: 0;
+}

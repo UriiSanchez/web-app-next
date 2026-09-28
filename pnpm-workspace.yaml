@@ -1,0 +1,10 @@
+# Keep installs explicit; running a script must not silently resolve dependencies.
+verifyDepsBeforeRun: error
+strictDepBuilds: true
+allowBuilds:
+   sharp@0.33.5: true
+   '@newrelic/fn-inspect@5.1.0': true
+   '@newrelic/native-metrics@13.1.0': true
+   protobufjs@7.6.6: true
+   unrs-resolver@1.7.2: true
+   fsevents@2.3.3: false
