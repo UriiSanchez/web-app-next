@@ -73,7 +73,7 @@ export function NewsContainer({ item, onSetData, disabled, isSave }) {
                   id='noNewsWereFound'
                   name='noNewsWereFound'
                   type='checkbox'
-                  checked={item?.noNewsWereFound}
+                  checked={!!item?.noNewsWereFound}
                   disabled={disabled}
                   className='option-input'
                   onChange={(e) =>

@@ -1,6 +1,6 @@
 # SPEC 03 — Pruebas unitarias de pages
 
-> **Status:** Aprobado  
+> **Status:** Implementado  
 > **Depends on:** SPEC 01, SPEC 02  
 > **Date:** 2026-09-29  
 > **Objective:** Crear pruebas unitarias con Jest y React Testing Library para los 44 archivos de `src/pages` no excluidos de la cobertura y para `MainLayout` y `AuthLayout`, con una suite por archivo, mocks solo en fronteras y al menos 80% de líneas y de ramas por archivo.
@@ -61,17 +61,17 @@ Cada paso termina con `pnpm test` en verde. Orden: de lo más simple a lo más c
 
 ## Criterios de aceptación
 
-- [ ] Existe una suite por cada archivo de `src/pages` excepto `_app.js`, `_document.js` y `api/auth/[...nextauth].js` (44), en la ruta espejo dentro de `src/__tests__/pages`.
-- [ ] Existen `MainLayout.test.jsx` y `AuthLayout.test.jsx` en `src/__tests__/components/Layout/`.
-- [ ] `pnpm test` termina con código 0, sin suites ni pruebas omitidas (`skip`, `todo`, comentadas).
-- [ ] Ninguna prueba usa `toMatchSnapshot` ni `toMatchInlineSnapshot`.
-- [ ] Ninguna prueba mockea componentes hijos ni `MainLayout` con `jest.mock`; los mocks se limitan a `../services`, `next/router`, `next-auth/react`, `next-auth`, `Swal.fire`, `customAxios` en el handler y módulos externos.
-- [ ] Todo caso contiene al menos una aserción sobre resultado, navegación, callback o argumentos enviados a un servicio.
-- [ ] Cada página que llama a un servicio tiene casos de éxito, `status` distinto de 200 y excepción del servicio.
-- [ ] Cada archivo que exporta `getServerSideProps` tiene un caso que verifica sus `props`.
-- [ ] Cada archivo cubierto (los 44 más `MainLayout` y `AuthLayout`) alcanza al menos 80% de líneas y 80% de ramas en `coverage/lcov.info`. Cualquier excepción se lista, con motivo, en `docs/pages-tests.md`.
-- [ ] `jest.config.js` y `src/pages` no se modificaron; tampoco `src/components`.
-- [ ] `docs/pages-tests.md` existe y refleja el estado final: convenciones, defectos hallados y excepciones de cobertura.
+- [x] Existe una suite por cada archivo de `src/pages` excepto `_app.js`, `_document.js` y `api/auth/[...nextauth].js` (44), en la ruta espejo dentro de `src/__tests__/pages`.
+- [x] Existen `MainLayout.test.jsx` y `AuthLayout.test.jsx` en `src/__tests__/components/Layout/`.
+- [x] `pnpm test` termina con código 0, sin suites ni pruebas omitidas (`skip`, `todo`, comentadas).
+- [x] Ninguna prueba usa `toMatchSnapshot` ni `toMatchInlineSnapshot`.
+- [x] Ninguna prueba mockea componentes hijos ni `MainLayout` con `jest.mock`; los mocks se limitan a `../services`, `next/router`, `next-auth/react`, `next-auth`, `Swal.fire`, `customAxios` en el handler y módulos externos.
+- [x] Todo caso contiene al menos una aserción sobre resultado, navegación, callback o argumentos enviados a un servicio.
+- [x] Cada página que llama a un servicio tiene casos de éxito, `status` distinto de 200 y excepción del servicio.
+- [x] Cada archivo que exporta `getServerSideProps` tiene un caso que verifica sus `props`.
+- [x] Cada archivo cubierto (los 44 más `MainLayout` y `AuthLayout`) alcanza al menos 80% de líneas y 80% de ramas en `coverage/lcov.info`. Cualquier excepción se lista, con motivo, en `docs/pages-tests.md`.
+- [x] `jest.config.js` y `src/pages` no se modificaron; tampoco `src/components`.
+- [x] `docs/pages-tests.md` existe y refleja el estado final: convenciones, defectos hallados y excepciones de cobertura.
 
 ## Decisiones tomadas y descartadas
 

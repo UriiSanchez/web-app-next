@@ -97,7 +97,9 @@ export const TableGeneric = ({
                ) : (
                   data
                      ?.slice(currentPage * itemsPerPage - itemsPerPage, currentPage * itemsPerPage)
-                     .map((item) => <RowItem key={`RowGroup-${item.idGroup}`} {...{ item, cols, onFunc }} />)
+                     .map((item, idx) => (
+                        <RowItem key={`RowGroup-${item.idGroup ?? item.idClient ?? idx}`} {...{ item, cols, onFunc }} />
+                     ))
                )}
             </tbody>
          </table>

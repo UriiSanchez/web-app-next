@@ -1,6 +1,6 @@
 # SPEC 01 — Pruebas unitarias de componentes
 
-> **Status:** Aprobado  
+> **Status:** Implementado  
 > **Depends on:** Ninguna  
 > **Date:** 2026-09-28  
 > **Objective:** Crear pruebas unitarias con Jest y React Testing Library para todos los componentes de `src/components`, excepto `Skeleton`, con una suite por archivo y una carpeta por paso, excluyendo `Skeleton`, `SVG` y `Layout`.
@@ -59,15 +59,15 @@ Cada paso cubre una carpeta y termina con `pnpm test` en verde. Orden: de compon
 
 ## Criterios de aceptación
 
-- [ ] Existe una suite por cada `.jsx` de `src/components` fuera de `Skeleton`, `SVG`, `Layout` e `index.js`, en la ruta espejo dentro de `src/__tests__/components`.
-- [ ] `pnpm test` termina con código 0, sin suites ni pruebas omitidas (`skip`, `todo`, comentadas).
-- [ ] Ninguna prueba usa `toMatchSnapshot` ni `toMatchInlineSnapshot`.
-- [ ] Ninguna prueba mockea componentes hijos con `jest.mock`; los mocks se limitan a servicios, `Swal.fire`, `signOut`, `next/router` y módulos externos.
-- [ ] Todo caso contiene al menos una aserción sobre resultado o callback.
-- [ ] Cada archivo cubierto tiene al menos 80% de líneas en el reporte de cobertura v8 (`coverage/lcov.info`). Cualquier excepción se lista, con motivo, en `docs/components-tests-refactor.md`.
-- [ ] `jest.config.js` incluye `'/src/components/SVG/*.jsx'` en `coveragePathIgnorePatterns` y conserva el de Skeleton; no se cambió ninguna otra opción.
-- [ ] No se modificó código de `src/components` (salvo autorización expresa registrada en el doc).
-- [ ] `docs/components-tests-refactor.md` refleja el estado final.
+- [x] Existe una suite por cada `.jsx` de `src/components` fuera de `Skeleton`, `SVG`, `Layout` e `index.js`, en la ruta espejo dentro de `src/__tests__/components`.
+- [x] `pnpm test` termina con código 0, sin suites ni pruebas omitidas (`skip`, `todo`, comentadas).
+- [x] Ninguna prueba usa `toMatchSnapshot` ni `toMatchInlineSnapshot`.
+- [x] Ninguna prueba mockea componentes hijos con `jest.mock`; los mocks se limitan a servicios, `Swal.fire`, `signOut`, `next/router` y módulos externos.
+- [x] Todo caso contiene al menos una aserción sobre resultado o callback.
+- [x] Cada archivo cubierto tiene al menos 80% de líneas en el reporte de cobertura v8 (`coverage/lcov.info`). Cualquier excepción se lista, con motivo, en `docs/components-tests-refactor.md`.
+- [x] `jest.config.js` incluye `'/src/components/SVG/*.jsx'` en `coveragePathIgnorePatterns` y conserva el de Skeleton; no se cambió ninguna otra opción.
+- [x] No se modificó código de `src/components` (salvo autorización expresa registrada en el doc).
+- [x] `docs/components-tests-refactor.md` refleja el estado final.
 
 ## Decisiones tomadas y descartadas
 

@@ -57,15 +57,19 @@ const BodyRow = ({ item, cells, onFunc, typeTable }) => {
          </tr>
          {isExpanded && typeTable !== 'ALL_TRACKING' && listRequests}
          {isExpanded && typeTable === 'ALL_TRACKING' && (
-            <TrackingDetails
-               idGroup={item.idGroup}
-               isGroup={item.isGroup}
-               groupName={item.groupName}
-               onExpand={() => setExpandedRows(item.idGroup)}
-               listApplicants={item.listApplicants}
-               listRequests={item.requestResponseList}
-               requestPerGroup={item.requestPerGroup}
-            />
+            <tr>
+               <td className='p-0'>
+                  <TrackingDetails
+                     idGroup={item.idGroup}
+                     isGroup={item.isGroup}
+                     groupName={item.groupName}
+                     onExpand={() => setExpandedRows(item.idGroup)}
+                     listApplicants={item.listApplicants}
+                     listRequests={item.requestResponseList}
+                     requestPerGroup={item.requestPerGroup}
+                  />
+               </td>
+            </tr>
          )}
       </Fragment>
    );

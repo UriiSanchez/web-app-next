@@ -111,7 +111,7 @@ export const formatDecimals = (number, decimals = 2) => {
    return '';
 };
 
-export const formatNumber = (number, decimals = 2) =>
-   !_.isNaN(Number(number)) ? Number(number).toFixed(decimals) : number;
+export const formatNumber = (number, decimals = 2, defaultValue) =>
+   !_.isNaN(Number(number)) ? Number(number).toFixed(decimals) : defaultValue ?? number;
 
 export const formatId = (id, pad = 10) => String(id).padStart(pad, '0');

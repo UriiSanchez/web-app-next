@@ -1,6 +1,6 @@
 # SPEC 02 — Pruebas unitarias de services
 
-> **Status:** Aprobado  
+> **Status:** Implementado  
 > **Depends on:** SPEC 01  
 > **Date:** 2026-09-28  
 > **Objective:** Crear pruebas unitarias con Jest para los 16 servicios de `src/services`, con una suite por archivo, mockeando solo `../hooks` y con al menos 80% de líneas y de ramas por archivo.
@@ -53,16 +53,16 @@ Cada paso cubre un grupo de servicios y termina con `pnpm test` en verde. Orden:
 
 ## Criterios de aceptación
 
-- [ ] Existe una suite por cada servicio de `src/services` excepto `index.js`, en `src/__tests__/services/`.
-- [ ] `pnpm test` termina con código 0, sin suites ni pruebas omitidas (`skip`, `todo`, comentadas).
-- [ ] Ninguna prueba usa `toMatchSnapshot` ni `toMatchInlineSnapshot`.
-- [ ] Los únicos `jest.mock` de las suites apuntan a `../../hooks`.
-- [ ] Todo caso contiene al menos una aserción sobre resultado o sobre los argumentos enviados a `genericFetch`/`customAxios`.
-- [ ] Cada función exportada de cada servicio tiene casos para éxito, `status` no exitoso y excepción del fetch.
-- [ ] Cada archivo de `src/services` (excepto `index.js`) alcanza al menos 80% de líneas y 80% de ramas en `coverage/lcov.info`. Cualquier excepción se lista, con motivo, en `docs/services-tests.md`.
-- [ ] `jest.config.js` no se modificó.
-- [ ] Todo cambio en `src/services` corresponde a un defecto listado en `docs/services-tests.md` y tiene una prueba que falla sin la corrección.
-- [ ] `docs/services-tests.md` existe y refleja el estado final.
+- [x] Existe una suite por cada servicio de `src/services` excepto `index.js`, en `src/__tests__/services/`.
+- [x] `pnpm test` termina con código 0, sin suites ni pruebas omitidas (`skip`, `todo`, comentadas).
+- [x] Ninguna prueba usa `toMatchSnapshot` ni `toMatchInlineSnapshot`.
+- [x] Los únicos `jest.mock` de las suites apuntan a `../../hooks`.
+- [x] Todo caso contiene al menos una aserción sobre resultado o sobre los argumentos enviados a `genericFetch`/`customAxios`.
+- [x] Cada función exportada de cada servicio tiene casos para éxito, `status` no exitoso y excepción del fetch.
+- [x] Cada archivo de `src/services` (excepto `index.js`) alcanza al menos 80% de líneas y 80% de ramas en `coverage/lcov.info`. Cualquier excepción se lista, con motivo, en `docs/services-tests.md`.
+- [x] `jest.config.js` no se modificó.
+- [x] Todo cambio en `src/services` corresponde a un defecto listado en `docs/services-tests.md` y tiene una prueba que falla sin la corrección.
+- [x] `docs/services-tests.md` existe y refleja el estado final.
 
 ## Decisiones tomadas y descartadas
 
