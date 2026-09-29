@@ -8,6 +8,10 @@ process.env.NEXT_PUBLIC_ENVIRONMENT = 'DEVELOP';
 beforeEach(() => {
    window.localStorage.clear();
    window.sessionStorage.clear();
+   // APIs de desplazamiento que JSDOM no implementa. Se recrean por caso porque
+   // restoreAllMocks (afterEach) descarta los mocks definidos a nivel de módulo.
+   window.HTMLElement.prototype.scrollTo = jest.fn();
+   window.scrollTo = jest.fn();
 });
 
 afterEach(() => {
@@ -17,7 +21,3 @@ afterEach(() => {
    window.localStorage.clear();
    window.sessionStorage.clear();
 });
-
-// APIs de desplazamiento que JSDOM no implementa.
-window.HTMLElement.prototype.scrollTo = jest.fn();
-window.scrollTo = jest.fn();
