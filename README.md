@@ -1,7 +1,7 @@
 # EasyCredit WEB #
 
 Para ejecutar esta copia aislada con Docker y pnpm, consulta la
-[guía de migración y validación local](docs/pnpm-migration.md). Consulta también el [traslado a src](docs/src-migration.md) y la [revisión de pruebas](docs/testing-review.md).
+[guía de migración y validación local](docs/pnpm-migration.md). Consulta también la [imagen Docker y el Jenkinsfile](docs/docker-image.md), el [traslado a src](docs/src-migration.md) y la [revisión de pruebas](docs/testing-review.md).
 
 *Readme v1.0.2*
 
@@ -20,7 +20,7 @@ Para ejecutar esta copia aislada con Docker y pnpm, consulta la
 
 Para fines de desarrollo, primero clona el proyecto desde este mismo repositorio, posteriormente ve a la rama `develop` y asegúrese de tener los últimos cambios. Luego sigue los siguientes pasos:
 
-1. Instalar pnpm 12.5.1 siguiendo la guía de migración en `docs/pnpm-migration.md`. Después instalar las dependencias del proyecto:
+1. Instalar pnpm 12.5.1 con Corepack siguiendo la guía de migración en `docs/pnpm-migration.md`. Después instalar las dependencias del proyecto:
 
 ```
 pnpm install --frozen-lockfile
@@ -134,7 +134,7 @@ La Fundación OpenJS proporciona apoyo para el proyecto.
 
 > ## Estructura del proyecto ##
 
-El código de aplicación, middleware, pruebas y mocks se encuentran en `src/`. `public/`, `scripts/`, `docs/` y la configuración permanecen en la raíz.
+El código de aplicación, middleware, pruebas y mocks se encuentran en `src/`. `public/`, `docs/` y la configuración permanecen en la raíz.
 
 * #### Components ####
     Componentes globales usados en toda la aplicación

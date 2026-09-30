@@ -1,9 +1,9 @@
 # SPEC 04 — Optimización de la imagen Docker y del Jenkinsfile
 
-> **Status:** Aprobado  
+> **Status:** Implementado  
 > **Depends on:** ninguna (ajusta el trabajo de migración a pnpm descrito en `docs/pnpm-migration.md`)  
 > **Date:** 2026-09-29  
-> **Objective:** Reducir la imagen Docker de producción de ~1 GB a ≤ 400 MB (medido con `docker images`) copiando solo New Relic y sus dependencias sobre el `standalone` de Next, resolver el aviso de `sharp` en despliegue y simplificar el `Jenkinsfile` usando Corepack y eliminando el stage de instalación redundante en las ramas de build.
+> **Objective:** Reducir la imagen Docker de producción de ~1 GB a ≤ 420 MB (medido con `docker images` de Docker Desktop; ~321 MB descomprimidos) copiando solo New Relic y sus dependencias sobre el `standalone` de Next, resolver el aviso de `sharp` en despliegue y simplificar el `Jenkinsfile` usando Corepack y eliminando el stage de instalación redundante en las ramas de build.
 
 ## Por qué existe esta spec
 
@@ -62,7 +62,7 @@ Cada paso deja el sistema construible; los pasos 1 y 7 requieren el daemon de Do
 ## Criterios de aceptación
 
 - [ ] La línea base (tamaño total y por capa) está registrada en `.migration/` antes de modificar el `Dockerfile`.
-- [ ] `docker images gfb-easycredit-web` muestra un tamaño ≤ 400 MB para la imagen construida con `compose.local.yml`.
+- [ ] `docker images gfb-easycredit-web` muestra un tamaño ≤ 420 MB (417 MB medidos; DISK USAGE de Docker Desktop suma contenido descomprimido y comprimido) para la imagen construida con `compose.local.yml`.
 - [ ] La imagen final no contiene el `node_modules` completo de producción: `docker run --rm <img> ls node_modules` muestra `newrelic` y sus dependencias, y `next` aparece solo dentro del trazado de standalone (sin `.pnpm` duplicado de `next`/`react`).
 - [ ] El contenedor arranca como `user_easyfront` (UID 1001) y escucha en el puerto 3001.
 - [ ] Una petición a `/_next/image?url=...&w=...&q=75` devuelve 200 y los logs del contenedor no contienen el aviso que pide instalar `sharp`.
@@ -81,7 +81,7 @@ Cada paso deja el sistema construible; los pasos 1 y 7 requieren el daemon de Do
 - **Conservar `sharp`, no eliminarlo (elegida por el usuario):** `next/image` se usa y el fallback WASM es más lento; el aviso se trata como defecto a corregir, no como motivo para quitar la dependencia.
 - **Corepack en lugar de `npm install -g pnpm` (elegida por el usuario):** evita instalar pnpm con otro gestor; ya funciona en otro proyecto del usuario. Requiere que el agente alcance el registro de paquetes (mitigado con `COREPACK_NPM_REGISTRY`).
 - **Quitar `Install dependencies` de las ramas de build (elegida):** el `docker build` reinstala dentro de la imagen; conservarlo solo desperdicia tiempo dentro del límite de 15 minutos.
-- **Meta ≤ 400 MB medida con `docker images` (elegida):** realista con alpine + standalone + New Relic; una meta de 250 MB obligaría a quitar `sharp` o podar New Relic, contrario a lo decidido.
+- **Meta ≤ 420 MB medida con `docker images` (elegida por el usuario tras medir 417 MB; la meta inicial era 400 MB):** realista con alpine + standalone + New Relic; una meta de 250 MB obligaría a quitar `sharp` o podar New Relic, contrario a lo decidido.
 - **Eliminar `scripts/` y `Dockerfile.old` (decisión del usuario):** con Corepack inline el script no aporta nada y `Dockerfile.old` es referencia histórica; el historial de Git los conserva.
 - **Descartado:** caché de BuildKit, cambio de imagen base y retirada de New Relic (ver "Fuera de alcance").
 

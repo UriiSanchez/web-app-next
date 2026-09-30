@@ -10,16 +10,17 @@ del login; no demuestra que la autenticación o los flujos de crédito funcionen
 -  Node **22.x**, mínimo 22.13.0; Node 24.x también está permitido para desarrollo.
 -  Docker Desktop con contenedores Linux y Docker Compose v2.
 
-Para instalar el gestor en un equipo con npm funcional:
+Para provisionar el gestor con Corepack (incluido en Node 22), que usa la
+versión fijada en `packageManager`:
 
 ```sh
-npm install --global pnpm@12.5.1 --ignore-scripts
+corepack enable
+corepack prepare pnpm@12.5.1 --activate
 pnpm --version
 pnpm install --frozen-lockfile
 pnpm run dev
 ```
 
-npm se utiliza únicamente para provisionar la versión exacta del gestor.
 Las dependencias de la aplicación se instalan con pnpm. Cambiar de gestor no
 cambia por sí solo el registro de paquetes ni elimina riesgos de suministro.
 
@@ -65,21 +66,24 @@ credenciales reales: no hay una API configurada.
    `allowBuilds`. Scripts nuevos o desconocidos hacen fallar la instalación.
    `fsevents` se omite; es una optimización opcional de observación en macOS.
 -  `verifyDepsBeforeRun: error` evita instalaciones implícitas al ejecutar scripts.
--  Docker instala todas las dependencias para construir y sólo las de producción
-   en otra etapa. El runner copia el grafo de producción completo, incluidos los
-   enlaces de pnpm, porque Next externaliza New Relic y no lo incluye en standalone.
-   Esto prioriza un arranque reproducible sobre minimizar el tamaño de imagen.
+-  Docker instala todas las dependencias para construir y, en una etapa aislada,
+   sólo New Relic (con las versiones del lockfile, sin enlaces simbólicos). El
+   runner contiene únicamente el `standalone` de Next, sus recursos estáticos y
+   ese `node_modules` de New Relic superpuesto, porque Next externaliza New Relic
+   y no lo incluye en standalone. La imagen pasó de 902 MB a 417 MB; ver
+   [imagen Docker y Jenkinsfile](docker-image.md).
 -  New Relic deja de descargarse sin versión en el runner. El arranque sigue siendo
-   `node -r newrelic server.js`. Sharp se busca en `/app/node_modules/sharp`.
--  Jenkins provisiona pnpm en instalación y pruebas porque son contenedores
-   independientes. Sólo cachear el store si se añade caché persistente; no compartir
-   `node_modules` entre sistemas operativos. Las condiciones de ramas no cambian.
--  `Dockerfile.old` se conserva únicamente como referencia histórica y está marcado
-   como no soportado. Jenkins y Compose utilizan `Dockerfile`.
+   `node -r newrelic server.js`. Ya no se define `NEXT_SHARP_PATH`: sharp viaja en
+   el trazado de standalone. El aviso de sharp en despliegue se explica en la guía.
+-  pnpm se provisiona con Corepack (no con `npm install --global`) en el
+   `Dockerfile` y en el `Jenkinsfile`. Jenkins instala y prueba en un solo stage,
+   sólo en PR hacia `develop`. Sólo cachear el store si se añade caché persistente;
+   no compartir `node_modules` entre sistemas operativos. Las condiciones de ramas
+   de build y despliegue no cambian.
 
 ## Traslado al repositorio principal
 
-Aplicar juntos manifiesto, lockfile, configuración pnpm, Dockerfile, scripts,
+Aplicar juntos manifiesto, lockfile, configuración pnpm, Dockerfile,
 Jenkinsfile y documentación. Retirar el lockfile npm en ese mismo cambio.
 Validar de nuevo el registro/proxy corporativo y el pipeline real. Después,
 validar con la API login, permisos y operaciones antes de promover ambientes.
@@ -91,21 +95,21 @@ Git y del contexto Docker, incluyendo una copia del lockfile npm de referencia.
 
 ## Resultado de validación (23 de septiembre de 2026)
 
-| Comprobación                                   | Resultado                                                           |
-| ---------------------------------------------- | ------------------------------------------------------------------- |
-| Versiones e integridad del grafo de aplicación | 856 paquetes únicos; sin diferencias entre npm y pnpm               |
-| Pruebas npm, Node 22.23.2 / Alpine             | 104 suites y 643 pruebas aprobadas                                  |
-| Pruebas pnpm, Node 22.23.2 / Alpine            | 104 suites y 643 pruebas aprobadas                                  |
-| Cobertura en ambos gestores                    | Statements/líneas 80.78%; ramas 73.14%; funciones 56.74%            |
-| Build de referencia npm                        | Aprobado                                                            |
-| Imagen Docker pnpm                             | Construida y arrancada; usuario UID 1001                            |
-| Login en navegador                             | Formulario, estilos e imágenes visibles                             |
-| HTTP local                                     | `/Login` 200; `/` 307 a `/Login`; sesión anónima 200                |
-| Sharp                                          | 0.33.5; optimización de imagen HTTP 200                             |
-| New Relic                                      | 14.4.0 cargado; agente desactivado sólo en Compose local            |
-| Instalación Windows, Node 24.19.0              | Aprobada; repetición offline aprobada sin cambiar hash del lockfile |
-| Compose y bootstrap Jenkins                    | Configuraciones válidas; script de instalación probado en Alpine    |
-| Lint                                           | Falla en ambos gestores con el mismo listado de diagnósticos        |
+| Comprobación                                   | Resultado                                                             |
+| ---------------------------------------------- | --------------------------------------------------------------------- |
+| Versiones e integridad del grafo de aplicación | 856 paquetes únicos; sin diferencias entre npm y pnpm                 |
+| Pruebas npm, Node 22.23.2 / Alpine             | 104 suites y 643 pruebas aprobadas                                    |
+| Pruebas pnpm, Node 22.23.2 / Alpine            | 104 suites y 643 pruebas aprobadas                                    |
+| Cobertura en ambos gestores                    | Statements/líneas 80.78%; ramas 73.14%; funciones 56.74%              |
+| Build de referencia npm                        | Aprobado                                                              |
+| Imagen Docker pnpm                             | Construida y arrancada; UID 1001; 902 MB → 417 MB (spec 04)           |
+| Login en navegador                             | Formulario, estilos e imágenes visibles                               |
+| HTTP local                                     | `/Login` 200; `/` 307 a `/Login`; sesión anónima 200                  |
+| Sharp                                          | 0.33.5; optimización de imagen HTTP 200                               |
+| New Relic                                      | 14.4.0 cargado; agente desactivado sólo en Compose local              |
+| Instalación Windows, Node 24.19.0              | Aprobada; repetición offline aprobada sin cambiar hash del lockfile   |
+| Compose y bootstrap Jenkins                    | Configuraciones válidas; instalación y pruebas con Corepack en Alpine |
+| Lint                                           | Falla en ambos gestores con el mismo listado de diagnósticos          |
 
 Los dos errores de lint existentes están en `components/Controls/CancelRequestButton.jsx`,
 línea 71, por comillas sin escapar (`react/no-unescaped-entities`). También existen

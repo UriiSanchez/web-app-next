@@ -39,4 +39,3 @@ sonar-project.properties
 docker-compose.yml
 compose.local.yml
 Dockerfile
-Dockerfile.old

@@ -50,34 +50,7 @@ pipeline {
                 failure{ script { env.FAILED_STAGE = env.STAGE_NAME } }
             }
         }
-        stage('⌛ Install dependencies') {
-            when {
-                beforeAgent true
-                anyOf {
-                    changeRequest target: 'develop'
-                    allOf {
-                        anyOf { branch 'develop'; branch 'qa' }
-                        not { changeRequest() }
-                    }
-                }
-            }
-            agent {
-                docker {
-                    image "${env.AGENT_IMAGE}"
-                    args '-u root'
-                    reuseNode true
-                }
-            }
-            steps {
-                echo '*** Preparando entorno e instalando dependencias ***'
-                sh 'sh scripts/setup-pnpm.sh'
-                sh 'pnpm install --frozen-lockfile --prefer-offline --store-dir /tmp/pnpm-store'
-            }
-            post{
-                failure{ script { env.FAILED_STAGE = env.STAGE_NAME } }
-            }
-        }
-        stage('🧪 Unit Testing') {
+        stage('🧪 Install & Unit Testing') {
             when {
                 beforeAgent true
                 changeRequest target: 'develop'
@@ -90,8 +63,17 @@ pipeline {
                 }
             }
             steps {
+                echo '*** Preparando entorno e instalando dependencias ***'
+                // If the agent cannot reach registry.npmjs.org, set COREPACK_NPM_REGISTRY (see docs/docker-image.md).
+                sh '''
+                    manager=$(node -p "require('./package.json').packageManager")
+                    case "$manager" in pnpm@*) ;; *) echo 'Expected a pinned pnpm packageManager in package.json' >&2; exit 1 ;; esac
+                    corepack enable
+                    corepack prepare "$manager" --activate
+                    pnpm --version
+                    pnpm install --frozen-lockfile --prefer-offline --store-dir /tmp/pnpm-store
+                '''
                 echo "Ejecutando test"
-                sh 'sh scripts/setup-pnpm.sh'
                 sh 'pnpm run test'
             }
             post{
