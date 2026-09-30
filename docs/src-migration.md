@@ -46,6 +46,14 @@ esa referencia; no se debe dejar simultáneamente `pages/` y `src/pages/` activo
 La guía de [migración a pnpm](pnpm-migration.md) conserva los resultados históricos
 de la etapa anterior.
 
+## Estructura posterior: App Router
+
+Este documento describe el traslado a `src/` con `src/pages` (Pages Router) como
+único router. El plan para migrar `src/pages` a `src/app` por olas, sin romper URLs,
+está en [routes-migration.md](routes-migration.md). Mientras ese plan no se ejecute,
+lo descrito aquí sigue vigente; durante la migración convivirán `src/pages` y
+`src/app`, y al terminar la Ola 9 desaparecerá `src/pages`.
+
 ## Validación del traslado
 
 - Suite local Windows: **104 suites y 643 pruebas aprobadas**, sin cambios respecto

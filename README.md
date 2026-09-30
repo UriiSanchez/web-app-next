@@ -1,7 +1,7 @@
 # EasyCredit WEB #
 
 Para ejecutar esta copia aislada con Docker y pnpm, consulta la
-[guía de migración y validación local](docs/pnpm-migration.md). Consulta también la [imagen Docker y el Jenkinsfile](docs/docker-image.md), el [traslado a src](docs/src-migration.md) y la [revisión de pruebas](docs/testing-review.md).
+[guía de migración y validación local](docs/pnpm-migration.md). Consulta también la [imagen Docker y el Jenkinsfile](docs/docker-image.md), el [traslado a src](docs/src-migration.md), la [revisión de pruebas](docs/testing-review.md) y el [plan de migración de Pages Router a App Router](docs/routes-migration.md).
 
 *Readme v1.0.2*
 
